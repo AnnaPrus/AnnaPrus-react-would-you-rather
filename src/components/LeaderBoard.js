@@ -1,5 +1,4 @@
 import React from "react";
-import '../styles/LeaderBoard.css';
 import { Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationMenu from "./NavigationMenu";

@@ -3,12 +3,13 @@ import '../App.css';
 import {Nav, Button, Card, Text} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import judo_penguin from '../images/judo_penguin.svg';
-
+import NavigationMenu from "./NavigationMenu";
 
 class AnsweredQuestions extends React.Component {
   render() {
     return (
     <body id="custom">
+        <NavigationMenu/>
         <div class="container">
             <div class="card-header-home" >
                 <Card >
