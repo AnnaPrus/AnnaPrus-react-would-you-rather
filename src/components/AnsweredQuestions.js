@@ -1,33 +1,42 @@
 import React from "react";
 import '../App.css';
-import {Nav, Button, Card, Text} from 'react-bootstrap';
+import {Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import girl from '../images/girl.png';
+import NavigationMenu from "./NavigationMenu";
+//import AnsweredQuestions from "./AnsweredQuestions";
+import QuestionItem from "./QuestionItem";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-class AnsweredQuestions extends React.Component {
-  render() {
+class HomePage extends React.Component {
+    componentDidMount() {
+  
+    }
+
+    render() {
+    const { users } = this.props;
+
     return (
     <body id="custom">
-        <div class="container answered-page">
-            <div class="card-header-home" >
-                <Card>
-                    <Card.Header as="h5">Anja Prus asks:</Card.Header>
-                    <div class="container-cards"> 
-                        <div class="image-box">
-                            <img class="avatar" src={girl}  alt="avatar" />
-                        </div>
-                        <div class="separator-vert"></div>
-                        <div class="container-info">
-                            <div class="text-first-line"><p>Would you rather</p></div>
-                            <div class="text-second-line"><p>...write JavaScript...</p></div>
-                            <Button className='btn-view-poll'>View Poll</Button>
-                        </div>
-                    </div>
-                </Card>  
-            </div> 
-        </div> 
-     </body>
+            <NavigationMenu/>
+            <div className='container'>
+                <div class="card card-home-big">
+                <ul class="nav nav-pills nav-fill .nav-justified">
+                    <li class="nav-item">
+                        <Link class="nav-link" to="/unanswered-questions" >Unanswered questions</Link>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ">Answered questions</a>
+                    </li>
+                </ul>
+                    <QuestionItem/>
+                    <QuestionItem/>
+                    <QuestionItem/>
+
+                </div>
+            </div>
+        </body>
     );
-  }
+    }
 }
-export default AnsweredQuestions;
+export default HomePage;

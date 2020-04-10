@@ -1,9 +1,12 @@
 /* 
 General styles and navigation menu
 */
+body {
+  line-height: 1.5;
+}
 
 #custom .nav-item:hover{
-  background-color:  rgb(241, 241, 241);
+  background-color:  #ff9292;
   transition: 1s;
 }
 
@@ -90,11 +93,16 @@ Home Page styles
   border-color: white;
 }
 /* 
+#custom .nav-pills{
+  background-color: teal;
+}
 Unanswered questions
 */
 #custom .card-home{
   width: 100%;
 }
+
+
 
 /* 
 Answered questions

@@ -1,17 +1,29 @@
 import React from 'react';
 import './App.css';
+import * as _DATA from "./_DATA";
 import { Route } from "react-router-dom";
 import HomePage from './components/HomePage';
 import LeaderBoard from './components/LeaderBoard';
 import NewQuestion from './components/NewQuestion';
 import LoginPage from './components/LoginPage';
-import UnansweredQuestions from './components/UnansweredQuestions';
+import UnansweredQuestions from './components/QuestionItem';
 import AnsweredQuestions from './components/AnsweredQuestions';
 import QuestionDetailUnanswered from './components/QuestionDetailUnanswered';
 import QuestionDetailAnswered from './components/QuestionDetailAnswered';
 import ErrorPage from './components/ErrorPage';
+import { connect } from "react-redux";
 
 class WouldYouRatherApp extends React.Component {
+  state = {
+    users: [],
+    };
+
+  componentDidMount() {
+  _DATA._getUsers().then(users => {
+      console.log("users: ", users);
+      this.setState({ users });
+  });
+  }
   render() {
     return (
         <div>
@@ -19,7 +31,9 @@ class WouldYouRatherApp extends React.Component {
             exact
             path="/login"
             render={() => (
-              <LoginPage/>
+              <LoginPage 
+                users={this.state.users}
+              />
             )}
           />
           <Route
@@ -45,16 +59,16 @@ class WouldYouRatherApp extends React.Component {
           />
           <Route
             exact
-            path="/answered-question"
+            path="/answered-questions"
             render={() => (
               <AnsweredQuestions/>
             )}
           />
            <Route
             exact
-            path="/unanswered-question"
+            path="/unanswered-questions"
             render={() => (
-              <UnansweredQuestions/>
+              <HomePage/>
             )}
           />
           <Route

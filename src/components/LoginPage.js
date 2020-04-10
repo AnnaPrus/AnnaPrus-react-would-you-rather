@@ -6,6 +6,7 @@ import NavigationMenu from '../components/NavigationMenu.js';
 
 class LoginPage extends React.Component {
   render() {
+    const { users } = this.props;
     return (
         <body id="custom">
             <NavigationMenu/>

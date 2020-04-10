@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import girl from '../images/girl.png';
 import { Link } from "react-router-dom";
 
-class UnansweredQuestions extends React.Component {
+class QuestionItem extends React.Component {
   render() {
     return (
         <body id="custom">
@@ -21,9 +21,11 @@ class UnansweredQuestions extends React.Component {
                         <div class="container-info">
                             <div class="text-first-line"><p>Would you rather</p></div>
                             <div class="text-second-line"><p>...write JavaScript...</p></div>
-                            <Link className='btn-view-poll' to="/questiondetailunanswered">
-                                <Button className='btn-view-poll'>View Poll</Button>
-                            </Link>
+                            <Button className='btn-view-poll'>
+                                <Link  to="/questiondetailunanswered">
+                                   View Poll
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                 </Card>  
@@ -33,4 +35,4 @@ class UnansweredQuestions extends React.Component {
     );
   }
 }
-export default UnansweredQuestions;
+export default QuestionItem;
