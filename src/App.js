@@ -52,7 +52,7 @@ class WouldYouRatherApp extends React.Component {
           />
            <Route
             exact
-            path="/aunnswered-question"
+            path="/unanswered-question"
             render={() => (
               <UnansweredQuestions/>
             )}

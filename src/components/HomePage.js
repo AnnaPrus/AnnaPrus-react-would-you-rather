@@ -1,13 +1,10 @@
 import React from "react";
 import '../App.css';
-import {Nav, Button, Card, Text} from 'react-bootstrap';
+import {Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../images/logo.svg';
 import NavigationMenu from "./NavigationMenu";
 import AnsweredQuestions from "./AnsweredQuestions";
-//import logo from './logo.svg';
-//import judo_penguine from '../images/judo_penguine.svg'
-
+import UnansweredQuestions from "./UnansweredQuestions";
 
 class HomePage extends React.Component {
   render() {
@@ -24,7 +21,7 @@ class HomePage extends React.Component {
                             <Nav.Link >Ansswered questions</Nav.Link>
                         </Nav.Item>
                     </Nav>
-                    <AnsweredQuestions/>
+                    <UnansweredQuestions/>
                 </div>
             </div>
      </body>

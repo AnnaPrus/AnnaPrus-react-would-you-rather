@@ -3,6 +3,7 @@ import '../App.css';
 import { Card,Form, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationMenu from "./NavigationMenu";
+import { Link } from "react-router-dom";
 
 class NewQuestion extends React.Component {
   render() {
@@ -19,7 +20,9 @@ class NewQuestion extends React.Component {
                                 <Form.Control className='input' placeholder="Enter Option One Text Here" />
                                 <Form.Control className='input' placeholder="Enter Option Two Text Here" />
                             </Form.Group>
-                            <Button className='btn-signin'>Submit</Button>
+                            <Link to="/home">
+                                <Button className='btn-signin'>Submit</Button>
+                            </Link>
                         </div>
                 </Card> 
             </div>

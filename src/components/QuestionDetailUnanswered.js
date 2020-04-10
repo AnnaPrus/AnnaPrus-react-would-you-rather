@@ -4,6 +4,7 @@ import {Nav, Button, Card, Text} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import girl from '../images/girl.png';
 import NavigationMenu from './NavigationMenu.js';
+import { Link } from "react-router-dom";
 
 
 class QuestionDetailUnanswered extends React.Component {
@@ -34,12 +35,13 @@ class QuestionDetailUnanswered extends React.Component {
                                     C#
                                 </label>
                             </div>
-                            <Button id="button-details-view">Submit</Button>
+                            <Link to="/questiondetailanswered">
+                                <Button id="button-details-view">Submit</Button>
+                            </Link>
                         </div>
                     </div>
                 </Card>  
             </div> 
-   
      </body>
     );
   }
