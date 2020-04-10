@@ -7,6 +7,10 @@ import NewQuestion from './components/NewQuestion';
 import LoginPage from './components/LoginPage';
 import UnansweredQuestions from './components/UnansweredQuestions';
 import AnsweredQuestions from './components/AnsweredQuestions';
+import QuestionDetailUnanswered from './components/QuestionDetailUnanswered';
+import QuestionDetailAnswered from './components/QuestionDetailAnswered';
+import ErrorPage from './components/ErrorPage';
+
 class WouldYouRatherApp extends React.Component {
   render() {
     return (
@@ -53,7 +57,27 @@ class WouldYouRatherApp extends React.Component {
               <UnansweredQuestions/>
             )}
           />
-          
+          <Route
+            exact
+            path="/questiondetailunanswered"
+            render={() => (
+              <QuestionDetailUnanswered/>
+            )}
+          />
+          <Route
+            exact
+            path="/questiondetailanswered"
+            render={() => (
+              <QuestionDetailAnswered/>
+            )}
+          />
+          <Route
+            exact
+            path="/error"
+            render={() => (
+              <ErrorPage/>
+            )}
+          />
         </div>
     );
   }

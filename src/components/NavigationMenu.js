@@ -7,23 +7,26 @@ class NavigationMenu extends React.Component {
   render() {
     return (
         <body id="custom">
-            <Nav className='menu' variant="tabs" defaultActiveKey="/home">
-                <Nav.Item>
-                    <Nav.Link href="/home">Home</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="link-1">New Question</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="disabled"> Leader Board</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <p class="text-hello">Hello, Anja Prus</p>
-                </Nav.Item>
-                <Nav.Item>
-                    <Button className='btn-logout'>Logout</Button>
-                </Nav.Item>
-            </Nav>
+           
+            <nav class="navbar navbar-expand-lg   ">
+                <div class="collapse navbar-collapse ml-5" id="navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active" >
+                            <a class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">New Question</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link">Leader Board</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline mr-5 my-lg-0">
+                        <text class="mr-sm-5" aria-label="Search"> Hello, Anja Prus </text>
+                        <button class="btn my-sm-0">Logout</button>
+                    </form>
+                </div>
+            </nav>
             <div class="hr"></div>
         </body>
    );

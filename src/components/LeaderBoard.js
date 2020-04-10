@@ -10,26 +10,25 @@ class LeaderBoard extends React.Component {
         <body id="custom">
             <NavigationMenu/>
             <div class="container">
-                <Card >
-                    <Card.Body>
-                        <div class="container-cards"> 
-                            <div class="container-col-small">
-                                <img class="avatar" src={girl}  alt="avatar" />
-                            </div>
-                            <div class="separator-vert"></div>
-                            <div class="container-col-big">
-                                <Card.Title >Anja Prus</Card.Title>
-                                <p class="text-card-info">Unswered questions</p>
-                                <p class="text-card-info">Created questions</p>
-                            </div>
-                            <div class="separator-vert"></div>
-                            <div class="score-box container-col-small">
-                                <div class="">
-
-                                </div>
+                <Card className='card-body'>
+                    <div class="container-cards"> 
+                        <div class="container-col-small">
+                            <img class="avatar" src={girl}  alt="avatar" />
+                        </div>
+                        <div class="separator-vert"></div>
+                        <div class="container-col-big">
+                            <Card.Title >Anja Prus</Card.Title>
+                            <p class="text-card-info">Unswered questions</p>
+                            <p class="text-card-info">Created questions</p>
+                        </div>
+                        <div class="separator-vert"></div>
+                        <div class="container-col-small">
+                            <div class="score-box">
+                                <div class="header-score-box">Score</div>
+                                <div id="circle">10</div>
                             </div>
                         </div>
-                    </Card.Body>
+                    </div>
                 </Card>  
             </div>
      </body>

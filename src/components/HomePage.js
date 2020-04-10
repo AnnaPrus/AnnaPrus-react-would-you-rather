@@ -16,12 +16,12 @@ class HomePage extends React.Component {
            <NavigationMenu/>
             <div className='container'>
                 <div class="card card-home-big">
-                    <Nav justify variant="tabs" defaultActiveKey="/home">
+                    <Nav justify variant="tabs">
                         <Nav.Item>
-                            <Nav.Link href="/home">Unanswered questions</Nav.Link>
+                            <Nav.Link >Unanswered questions</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="link-1">Ansswered questions</Nav.Link>
+                            <Nav.Link >Ansswered questions</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <AnsweredQuestions/>
