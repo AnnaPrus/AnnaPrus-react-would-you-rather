@@ -5,7 +5,7 @@ import NavigationMenu from "./NavigationMenu";
 import QuestionItem from "./QuestionItem";
 import { Link } from "react-router-dom";
 import {receiveUsers} from "../actions";
-import * as _DATA from "../_DATA";
+import * as _DATA from "../utils/_DATA";
 import { connect } from 'react-redux';
 
 class HomePage extends React.Component {

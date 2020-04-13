@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import * as _DATA from "../_DATA";
+import * as _DATA from "../utils/_DATA";
 import { Route } from "react-router-dom";
 import HomePage from './HomePage';
 import LeaderBoard from './LeaderBoard';

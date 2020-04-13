@@ -3,7 +3,7 @@ import {
     _getQuestions,
     _saveQuestionAnswer,
     _saveQuestion,
-  } from '../_DATA.js'
+  } from './_DATA.js'
 
   export function getInitialUsers() {
     return _getUsers()
