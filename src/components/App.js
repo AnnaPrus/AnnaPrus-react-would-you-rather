@@ -1,30 +1,29 @@
 import React from 'react';
-import './App.css';
-import * as _DATA from "./_DATA";
+import '../App.css';
+import * as _DATA from "../_DATA";
 import { Route } from "react-router-dom";
-import HomePage from './components/HomePage';
-import LeaderBoard from './components/LeaderBoard';
-import NewQuestion from './components/NewQuestion';
-import LoginPage from './components/LoginPage';
-import UnansweredQuestions from './components/QuestionItem';
-import AnsweredQuestions from './components/AnsweredQuestions';
-import QuestionDetailUnanswered from './components/QuestionDetailUnanswered';
-import QuestionDetailAnswered from './components/QuestionDetailAnswered';
-import ErrorPage from './components/ErrorPage';
+import HomePage from './HomePage';
+import LeaderBoard from './LeaderBoard';
+import NewQuestion from './NewQuestion';
+import LoginPage from './LoginPage';
+import AnsweredQuestions from './AnsweredQuestions';
+import QuestionDetailUnanswered from './QuestionDetailUnanswered';
+import QuestionDetailAnswered from './QuestionDetailAnswered';
+import ErrorPage from './ErrorPage';
+import { handleInitialUsers } from '../actions/shared';
 import { connect } from "react-redux";
 
-class WouldYouRatherApp extends React.Component {
-  state = {
-    users: [],
-    };
-
+class App extends React.Component {
+  
   componentDidMount() {
-  _DATA._getUsers().then(users => {
-      console.log("users: ", users);
-      this.setState({ users });
-  });
+    const AUTHED_ID = null;
+    this.props.dispatch((handleInitialUsers(AUTHED_ID)))
+    console.log()
   }
+
   render() {
+   // const {users} = this.props
+  // console.log("hehe33", Object.keys(users).map((id) =>  users[id].name))
     return (
         <div>
           <Route
@@ -38,9 +37,12 @@ class WouldYouRatherApp extends React.Component {
           />
           <Route
             exact
-            path="/home"
+            path="/"
             render={() => (
-              <HomePage/>
+              <HomePage
+              
+        
+              />
             )}
           />
           <Route
@@ -62,13 +64,6 @@ class WouldYouRatherApp extends React.Component {
             path="/answered-questions"
             render={() => (
               <AnsweredQuestions/>
-            )}
-          />
-           <Route
-            exact
-            path="/unanswered-questions"
-            render={() => (
-              <HomePage/>
             )}
           />
           <Route
@@ -98,6 +93,14 @@ class WouldYouRatherApp extends React.Component {
   
   
 }
-export default WouldYouRatherApp;
+
+function mapStateToProps ({ users }) {
+  console.log("users fro  log",users)
+  return {
+    users
+  }
+}
+
+export default connect( mapStateToProps)(App);
 
 

@@ -1,10 +1,9 @@
 import React from "react";
 import '../App.css';
-import {Nav, Button, Card, Text} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import girl from '../images/girl.png';
 import NavigationMenu from './NavigationMenu.js';
-
 
 class QuestionDetailUnanswered extends React.Component {
   render() {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Nav, Button} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +11,7 @@ class NavigationMenu extends React.Component {
             <nav class="navbar navbar-expand-lg   ">
                 <div class="collapse navbar-collapse ml-5" id="navbar">
                     <ul class="navbar-nav mr-auto">
-                        <Link to="/home">
+                        <Link to="/">
                             <li class="nav-item active" >
                                 <a class="nav-link">Home</a>
                             </li>

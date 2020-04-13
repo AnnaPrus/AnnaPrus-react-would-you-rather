@@ -20,7 +20,7 @@ class NewQuestion extends React.Component {
                                 <Form.Control className='input' placeholder="Enter Option One Text Here" />
                                 <Form.Control className='input' placeholder="Enter Option Two Text Here" />
                             </Form.Group>
-                            <Link to="/home">
+                            <Link to="/">
                                 <Button className='btn-signin'>Submit</Button>
                             </Link>
                         </div>

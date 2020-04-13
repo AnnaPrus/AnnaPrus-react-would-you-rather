@@ -161,6 +161,10 @@ Answered questions
   justify-content: center;
 }
 
+.text-view-poll{
+  color: #ff9292;
+}
+
 /* 
 New Question Page styles
 */

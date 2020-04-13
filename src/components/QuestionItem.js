@@ -1,18 +1,24 @@
 import React from "react";
 import '../App.css';
-import {Nav, Button, Card, Text} from 'react-bootstrap';
+import { Button, Card} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import girl from '../images/girl.png';
 import { Link } from "react-router-dom";
 
 class QuestionItem extends React.Component {
-  render() {
+constructor(props) {
+    super(props);
+}
+
+render() {
+    const {user} = this.props; 
+    
     return (
         <body id="custom">
         <div class="container answered-page">
             <div class="card-header-home" >
                 <Card>
-                    <Card.Header as="h5">Anja Prus asks:</Card.Header>
+                    <Card.Header as="h5">{user} asks:</Card.Header>
                     <div class="container-cards"> 
                         <div class="image-box">
                             <img class="avatar" src={girl}  alt="avatar" />
@@ -23,7 +29,7 @@ class QuestionItem extends React.Component {
                             <div class="text-second-line"><p>...write JavaScript...</p></div>
                             <Button className='btn-view-poll'>
                                 <Link  to="/questiondetailunanswered">
-                                   View Poll
+                                   <div class="text-view-poll">View Poll</div>
                                 </Link>
                             </Button>
                         </div>

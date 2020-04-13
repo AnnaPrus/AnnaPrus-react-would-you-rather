@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../images/logo.svg';
 import NavigationMenu from '../components/NavigationMenu.js';
 
 class LoginPage extends React.Component {

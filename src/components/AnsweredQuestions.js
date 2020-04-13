@@ -1,11 +1,9 @@
 import React from "react";
 import '../App.css';
-import {Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationMenu from "./NavigationMenu";
-//import AnsweredQuestions from "./AnsweredQuestions";
 import QuestionItem from "./QuestionItem";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class HomePage extends React.Component {
@@ -23,7 +21,7 @@ class HomePage extends React.Component {
                 <div class="card card-home-big">
                 <ul class="nav nav-pills nav-fill .nav-justified">
                     <li class="nav-item">
-                        <Link class="nav-link" to="/unanswered-questions" >Unanswered questions</Link>
+                        <Link class="nav-link" to="/" >Unanswered questions</Link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ">Answered questions</a>
