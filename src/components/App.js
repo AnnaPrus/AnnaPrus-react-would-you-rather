@@ -31,7 +31,7 @@ class App extends React.Component {
             path="/login"
             render={() => (
               <LoginPage 
-                users={this.state.users}
+              
               />
             )}
           />
@@ -40,8 +40,6 @@ class App extends React.Component {
             path="/"
             render={() => (
               <HomePage
-              
-        
               />
             )}
           />
@@ -95,7 +93,7 @@ class App extends React.Component {
 }
 
 function mapStateToProps ({ users }) {
-  console.log("users fro  log",users)
+  console.log("users from log",users)
   return {
     users
   }
