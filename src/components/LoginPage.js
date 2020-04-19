@@ -61,6 +61,7 @@ class LoginPage extends React.Component {
                         <div class="form-group">
                             <label for="canbedeleted"> </label>
                             <select 
+                            /* here you can remove some attributes?*/ 
                             id="userSelect"
                             type="select"
                             name="select"
@@ -68,7 +69,7 @@ class LoginPage extends React.Component {
                             onChange={this.handleChangeUser}
                             class="form-control">
                                 <option value="" disabled>Please select</option>
-                                {
+                                {/* here you can change to a better funcion from you*/ 
                                 Object.keys(users).map(user =>
                                 <option key={user} value={user}>
                                     {users[user].name}

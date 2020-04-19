@@ -14,8 +14,7 @@ render() {
     const {user} = this.props; 
     
     return (
-        <body id="custom">
-        <div class="container answered-page">
+        <div id="custom" class="container answered-page">
             <div class="card-header-home" >
                 <Card>
                     <Card.Header as="h5">{user} asks:</Card.Header>
@@ -29,7 +28,7 @@ render() {
                             <div class="text-second-line"><p>...write JavaScript...</p></div>
                             <Button className='btn-view-poll'>
                                 <Link  to="/questiondetailunanswered">
-                                   <div class="text-view-poll">View Poll</div>
+                                <div class="text-view-poll">View Poll</div>
                                 </Link>
                             </Button>
                         </div>
@@ -37,8 +36,7 @@ render() {
                 </Card>  
             </div> 
         </div> 
-     </body>
     );
   }
 }
-export default QuestionItem;
+export default QuestionItem; 

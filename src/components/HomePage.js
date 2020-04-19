@@ -12,7 +12,9 @@ class HomePage extends React.Component {
 
     render() {
         const {users} = this.props
-        console.log("users from home page: ", Object.keys(users).map((id) =>  users[id].name))
+        const {authedUser} = this.props
+        console.log('current user from home: ', authedUser)
+       // console.log("users from home page: ", Object.keys(users).map((id) =>  users[id].name))
        
         return (
         <div id="custom">
@@ -36,7 +38,7 @@ class HomePage extends React.Component {
                         </li>
                     </ul> 
                     {
-                        Object.keys(users).map((id) => <QuestionItem user = {users[id].name}></QuestionItem>)
+                        Object.keys(users).map((id) => <QuestionItem key={id} user = {users[id].name}></QuestionItem>)
                     }  
                     </div>
                 </div>
@@ -45,10 +47,22 @@ class HomePage extends React.Component {
     }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, authedUser, questions }) {
+    const user = users[authedUser];
+    console.log('current authedUser ls: ' , authedUser)
+   // console.log('current user ls: ' , Object.keys(user))
+    console.log("hehe", users[Object.keys(users)[0]].answers)
+        const answeredQuestions = Object.keys(user.answers)
+        .sort((a,b) => questions[b] - questions[a]);
     return {
-      users
+        unansweredQuestions : Object.keys(questions).filter(qid => !answeredQuestions.includes(qid))
+        .sort((a,b) => questions[b] - questions[a]),
+        answeredQuestions,
+        users,
+        authedUser,
+        questions
     }
   }
   
 export default connect(mapStateToProps)(HomePage)
+

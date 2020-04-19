@@ -10,15 +10,16 @@ import AnsweredQuestions from './AnsweredQuestions';
 import QuestionDetailUnanswered from './QuestionDetailUnanswered';
 import QuestionDetailAnswered from './QuestionDetailAnswered';
 import ErrorPage from './ErrorPage';
-import { handleInitialUsers } from '../actions/shared';
+import { handleInitialData }  from '../actions/shared'
 import { connect } from "react-redux";
 
 class App extends React.Component {
   
   componentDidMount() {
-    const AUTHED_ID = null;
-    this.props.dispatch((handleInitialUsers(AUTHED_ID)))
-    console.log()
+   // const AUTHED_ID = null;
+    //this.props.handleInitialData()
+    this.props.dispatch((handleInitialData()))
+
   }
 
   render() {
@@ -31,7 +32,6 @@ class App extends React.Component {
             path="/login"
             render={() => (
               <LoginPage 
-              
               />
             )}
           />
@@ -57,7 +57,7 @@ class App extends React.Component {
               <NewQuestion/>
             )}
           />
-          <Route
+         <Route
             exact
             path="/answered-questions"
             render={() => (
@@ -88,17 +88,17 @@ class App extends React.Component {
         </div>
     );
   }
-  
-  
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, questions }) {
   console.log("users from log",users)
   return {
-    users
+    users, 
+    questions
   }
 }
 
-export default connect( mapStateToProps)(App);
+
+export default connect(  mapStateToProps)(App);
 
 
