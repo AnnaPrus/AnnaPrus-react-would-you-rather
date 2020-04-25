@@ -1,47 +1,55 @@
-import { getInitialData } from '../utils/api'
+import { getInitialData } from "../utils/api";
+import { setAuthedUser } from "../actions/authedUser";
 
-import { addUserQuestion, saveUserAnswer,receiveUsers } from '../actions/users'
-import { addQuestion, receiveQuestions, saveQuestionAnswer } from '../actions/questions'
-import { _saveQuestionAnswer, _saveQuestion } from '../utils/_DATA'
+import {
+  addUserQuestion,
+  saveUserAnswer,
+  receiveUsers,
+} from "../actions/users";
+import {
+  addQuestion,
+  receiveQuestions,
+  saveQuestionAnswer,
+} from "../actions/questions";
+import { _saveQuestionAnswer, _saveQuestion } from "../utils/_DATA";
 
-export function handleInitialData () {
-    return (dispatch) => {
-        return getInitialData()
-            .then((users, questions) => {
-                dispatch(receiveUsers(users));
-                dispatch(receiveQuestions(questions))
-        })
-    }
-  }
+const AUTHED_ID = null;
 
-  export function handleAddQuestion (optionOneText, optionTwoText){
-    return (dispatch, getState) => {
-        const { authedUser } = getState();
-        return _saveQuestion({
-            optionOneText,
-            optionTwoText,
-            author: authedUser
-        })
-        .then((question) => {
-            dispatch(addQuestion(question));
-            dispatch(addUserQuestion(authedUser, question.id))
-        })
-
-    }
+export function handleInitialData() {
+  return (dispatch) => {
+    return getInitialData().then(({ users, questions }) => {
+      dispatch(receiveUsers(users));
+      dispatch(receiveQuestions(questions));
+      dispatch(setAuthedUser(AUTHED_ID));
+    });
+  };
 }
 
-export function handleAnswer (qid, option) {
-    return (dispatch, getState) => {
-      const { authedUser } = getState();
-      const info = {
-        authedUser: authedUser,
-        qid,
-        answer: option
-      };
-      _saveQuestionAnswer(info)
-          .then(() => {
-              dispatch(saveQuestionAnswer(authedUser, qid, option));
-              dispatch(saveUserAnswer(authedUser, qid, option))
-          })
-    }
+export function handleAddQuestion(optionOneText, optionTwoText) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+    return _saveQuestion({
+      optionOneText,
+      optionTwoText,
+      author: authedUser,
+    }).then((question) => {
+      dispatch(addQuestion(question));
+      dispatch(addUserQuestion(authedUser, question.id));
+    });
+  };
+}
+
+export function handleAnswer(qid, option) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+    const info = {
+      authedUser: authedUser,
+      qid,
+      answer: option,
+    };
+    _saveQuestionAnswer(info).then(() => {
+      dispatch(saveQuestionAnswer(authedUser, qid, option));
+      dispatch(saveUserAnswer(authedUser, qid, option));
+    });
+  };
 }
