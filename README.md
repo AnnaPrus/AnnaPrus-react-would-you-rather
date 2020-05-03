@@ -14,10 +14,10 @@ To get started:
 
 To get started:
 
-- Select a user to login as.
+- Select a user to login.
 - You can select answered and unanswered polls by using the tabs provided.
-- You can view a poll and vote by selecting a radio button.
+- You can view a poll and vote by selecting an answer.
 - View the results after you have voted.
 - Create a new question by selecting your options.
 - View the leaderboard.
-- Logout
+- Logout.
