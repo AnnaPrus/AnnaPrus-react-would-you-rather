@@ -2,7 +2,7 @@
 
 Would You Rather Game for submission of Udacity's React & Redux course.
 
-## Data
+## Project intallation
 
 To set up the project locally:
 
@@ -20,10 +20,6 @@ yarn install # install the dependencies
 yarn start # run the server
 
 ```
-
-- install project with npm install
-- start server with npm start
-- go to http://localhost:3000 to view the app
 
 ## Usage
 
