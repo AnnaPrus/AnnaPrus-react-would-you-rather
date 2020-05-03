@@ -4,7 +4,22 @@ Would You Rather Game for submission of Udacity's React & Redux course.
 
 ## Data
 
-To get started:
+To set up the project locally:
+
+npm
+
+```
+npm install # install the dependencies
+npm start # run the server
+```
+
+Yarn
+
+```
+yarn install # install the dependencies
+yarn start # run the server
+
+```
 
 - install project with npm install
 - start server with npm start
@@ -21,3 +36,7 @@ To get started:
 - Create a new question by selecting your options.
 - View the leaderboard.
 - Logout.
+
+## Important to know
+
+Project uses a mock API to store data. So the data will be cleared when the page reloads.
