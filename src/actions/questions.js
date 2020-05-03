@@ -1,26 +1,26 @@
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const ADD_QUESTION = 'ADD_QUESTION';
-export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
+export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
+export const ADD_QUESTION_ANSWER_Q = "ADD_QUESTION_ANSWER_Q";
+export const ADD_QUESTION_Q = "ADD_QUESTION_Q";
 
-export function addQuestion (question) {
+export function receiveQuestions(questions) {
   return {
-    type: ADD_QUESTION,
-    question
-  }
-}
-
-export function receiveQuestions(questions){
-  return{
     type: RECEIVE_QUESTIONS,
-    questions
-  }
+    questions,
+  };
 }
 
-export function saveQuestionAnswer(authedUser, qid, answer) {
+export function addQuestionForQuestion(question) {
   return {
-    type: SAVE_QUESTION_ANSWER,
+    type: ADD_QUESTION_Q,
+    question,
+  };
+}
+
+export function saveAnswerForQuestion(authedUser, qid, answer) {
+  return {
+    type: ADD_QUESTION_ANSWER_Q,
     authedUser,
     qid,
-    answer
-  }
+    answer,
+  };
 }

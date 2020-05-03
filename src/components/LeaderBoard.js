@@ -1,38 +1,73 @@
 import React from "react";
-import { Card} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavigationMenu from "./NavigationMenu";
-import girl from '../images/girl.png';
+import { Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from "react-redux";
 
 class LeaderBoard extends React.Component {
   render() {
+    const { leaders } = this.props;
     return (
-        <body id="custom">
-            <NavigationMenu/>
-            <div class="container">
-                <Card className='card-body'>
-                    <div class="container-cards"> 
-                        <div class="container-col-small">
-                            <img class="avatar" src={girl}  alt="avatar" />
+      <body id="custom">
+        <div class="container leaderboard-page">
+          <h3>Leaderboard</h3>
+          <Card className="card-body">
+            {console.log(this.props)}
+            {leaders.map((user, index) => (
+              <div className="leaderboard-page">
+                <Card>
+                  <div key={user.leaderId} className=" ">
+                    <Card.Header>
+                      <h4>{user.leaderName} asks:</h4>
+                    </Card.Header>
+                    <Card.Body>
+                      <div className="container-cards">
+                        <div className="left">
+                          <img
+                            className="poll-card-avatar "
+                            alt={user.avatarURL}
+                            src={user.avatarURL}
+                          />
                         </div>
                         <div class="separator-vert"></div>
-                        <div class="container-col-big">
-                            <Card.Title >Anja Prus</Card.Title>
-                            <p class="text-card-info">Unswered questions</p>
-                            <p class="text-card-info">Created questions</p>
+                        <div className="container-info">
+                          <h5>Score: {user.score}</h5>
+                          <p>Answered Questions: {user.answered}</p>
+                          <p>Created Questions: {user.questions}</p>
+
+                          <p className="truncate center"></p>
                         </div>
-                        <div class="separator-vert"></div>
-                        <div class="container-col-small">
-                            <div class="score-box">
-                                <div class="header-score-box">Score</div>
-                                <div id="circle">10</div>
-                            </div>
-                        </div>
-                    </div>
-                </Card>  
-            </div>
-     </body>
+                      </div>
+                    </Card.Body>
+                  </div>
+                </Card>
+                <br />
+              </div>
+            ))}
+          </Card>
+        </div>
+      </body>
     );
   }
 }
-export default LeaderBoard;
+function mapStateToProps({ questions, users }) {
+  const leaders = Object.keys(users).map((userId) => ({
+    name: users[userId].name,
+    leaderId: userId,
+    leaderName: users[userId].name,
+    avatarURL: users[userId].avatarURL,
+    score:
+      Object.keys(users[userId].answers).length +
+      Object.keys(users[userId].questions).length,
+    answered: Object.keys(users[userId].answers).length,
+    questions: Object.keys(users[userId].questions).length,
+  }));
+
+  return {
+    questions: Object.values(questions),
+    leaders: leaders.sort(
+      (a, b) => b.answered + b.questions - (a.answered + a.questions)
+    ),
+  };
+}
+
+export default connect(mapStateToProps)(LeaderBoard);

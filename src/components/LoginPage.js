@@ -1,52 +1,32 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavigationMenu from "../components/NavigationMenu.js";
-import { setAuthedUser, handleSetAuthedUser } from "../actions/authedUser";
+import { handleSetAuthedUser } from "../actions/authedUser";
 import { connect } from "react-redux";
 
 class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { userId: "" };
-    this.handleChangeUser = this.handleChangeUser.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
   state = {
     redirectTo: false,
+    selectedOption: "johndoe",
   };
 
-  handleChangeUser(event) {
-    //console.log("logins page user id: ", this.state.userId);
-    this.setState({ userId: event.target.value });
-  }
+  handleOnChange = (e) => {
+    const optionValue = e.target.options[e.target.selectedIndex].id;
+    this.setState((currentState) => ({
+      selectedOption: optionValue,
+    }));
+  };
 
-  handleSubmit(event) {
-    const { userId } = this.state;
-    const { authenticate } = this.props;
-    if (userId) {
-      authenticate(userId);
-    } else {
-      alert("Select a user, please");
-    }
-    event.preventDefault();
-    this.setState({
-      redirectTo: true,
-    });
-  }
+  handleLogin = (e) => {
+    const { dispatch } = this.props;
+    dispatch(handleSetAuthedUser(this.state.selectedOption));
+  };
 
   render() {
-    const { users } = this.props;
-    const { userId, redirectTo } = this.state;
-
-    if (redirectTo) {
-      return <Redirect to={{ pathname: "/" }} />;
-    }
-
+    const { options } = this.props;
     return (
       <body id="custom">
-        <NavigationMenu />
+        {console.log(this.state)}
         <div class="container login-page">
           <Card>
             <Card.Header className="card-header" as="h5">
@@ -54,43 +34,30 @@ class LoginPage extends React.Component {
               <p class="card-text">Please sign in to continue</p>
             </Card.Header>
             <Card.Body>
-              <div className="app-logo">
-                <img />
-              </div>
               <h4 class="card-title text-signin">Sign In</h4>
               <div class="form-group">
                 <label for="canbedeleted"> </label>
-                <select
-                  /* here you can remove some attributes?*/
 
-                  id="userSelect"
-                  type="select"
-                  name="select"
-                  value={userId}
-                  onChange={this.handleChangeUser}
+                <select
+                  value={this.state.selectedOption}
+                  onChange={this.handleOnChange}
                   class="form-control"
                 >
-                  <option value="" disabled>
-                    Please select
-                  </option>
-                  {
-                    /* here you can change to a better funcion from you*/
-
-                    Object.keys(users).map((user) => (
-                      <option key={user} value={user}>
-                        {users[user].name}
-                      </option>
-                    ))
-                  }
+                  {options.map((option) => (
+                    <option
+                      key={option.value}
+                      id={option.value}
+                      value={option.value}
+                    >
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
+                <br />
+                <Button onClick={this.handleLogin} className="btn-signin">
+                  Sign In
+                </Button>
               </div>
-              <Button
-                disabled={userId === ""}
-                onClick={this.handleSubmit}
-                className="btn-signin"
-              >
-                Sign In
-              </Button>
             </Card.Body>
           </Card>
         </div>
@@ -98,21 +65,12 @@ class LoginPage extends React.Component {
     );
   }
 }
-function mapStateToProps({ users, questions }) {
-  console.log("users from login page: ", users);
-  console.log("questions from login page: ", questions);
+function mapStateToProps({ users }) {
   return {
-    users,
-    questions,
+    options: Object.values(users).map((user) => {
+      return { value: user.id, label: user.name };
+    }),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    authenticate: (id) => {
-      dispatch(setAuthedUser(id));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps)(LoginPage);

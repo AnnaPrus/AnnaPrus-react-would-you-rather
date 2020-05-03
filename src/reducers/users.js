@@ -1,32 +1,41 @@
-import { RECEIVE_USERS, USER_ANSWER_QUESTION, ADD_USER_QUESTION  } from '../actions/users'
+import {
+  RECEIVE_USERS,
+  ADD_QUESTION_ANSWER_U,
+  ADD_QUESTION_U,
+} from "../actions/users";
 
-export default function users (state = {}, action ) {
-  switch(action.type){
-    case USER_ANSWER_QUESTION:
-      return {
-        ...state,
-        [action.auth]: {
-          ...state[action.auth],
-          answers: {
-            ...state[action.auth].answers,
-            [action.qid]: action.option
-          }
-        }
-      };
+export default function users(state = {}, action) {
+  switch (action.type) {
     case RECEIVE_USERS:
       return {
         ...state,
-        ...action.users
-      }
-    case ADD_USER_QUESTION :
-    return {
-      ...state,
-      [action.authedUser]: {
-        ...state[action.authedUser],
-        questions: state[action.authedUser].questions.concat([action.qid])
-      }
-    };
-    default :
-      return state
+        ...action.users,
+      };
+    case ADD_QUESTION_ANSWER_U:
+      const { authedUser, qid, answer } = action.authedUser;
+
+      return {
+        ...state,
+        [authedUser]: {
+          ...state[authedUser],
+          answers: {
+            ...state[authedUser].answers,
+            [qid]: answer,
+          },
+        },
+      };
+
+    case ADD_QUESTION_U:
+      const { question } = action;
+      return {
+        ...state,
+        [question.author]: {
+          ...state[question.author],
+          questions: state[question.author].questions.concat([question.id]),
+        },
+      };
+
+    default:
+      return state;
   }
 }

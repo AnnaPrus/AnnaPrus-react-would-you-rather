@@ -1,21 +1,10 @@
 import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavigationMenu from "./NavigationMenu";
-import QuestionItem from "./QuestionItem";
-import { Link } from "react-router-dom";
-import { receiveUsers } from "../actions";
-import * as _DATA from "../utils/_DATA";
+import PollResultsList from "../components/PollResultsList";
+import PollList from "../components/PollList";
 import { connect } from "react-redux";
-import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-  Col,
-} from "reactstrap";
+import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 
 class HomePage extends React.Component {
@@ -31,30 +20,10 @@ class HomePage extends React.Component {
     }
   }
   render() {
-    const { unansweredQuestions, answeredQuestions, authedUser } = this.props;
-    // console.log("current user from home: ", authedUser);
-    console.log("answeredQuestions: ", answeredQuestions);
     return (
       <div id="custom">
-        <NavigationMenu />
         <div className="container">
           <div class="card card-home-big">
-            {/* <ul class="nav nav-pills nav-fill .nav-justified">
-                        <li class="nav-item">
-                            <Link 
-                                class="nav-link" 
-                                to="/" >
-                                Unanswered questions
-                            </Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link 
-                                class="nav-link" 
-                                to="/answered-questions" >
-                                Answered questions
-                            </Link>
-                        </li>
-                    </ul>  */}
             <Nav tabs>
               <NavItem>
                 <NavLink
@@ -82,24 +51,18 @@ class HomePage extends React.Component {
               </NavItem>
             </Nav>
             <TabContent activeTab={this.state.activeTab}>
-              <TabPane tabId="1">
-                <Row>
-                  {unansweredQuestions.map((qid) => (
-                    <QuestionItem id={qid} />
-                  ))}
-                </Row>
+              <TabPane className="center" tabId="1">
+                <PollList
+                  key="unansweredQuestions"
+                  questions={this.props.unansweredQuestions}
+                />
               </TabPane>
-              <TabPane tabId="2">
-                <Row>
-                  {answeredQuestions.map((qid) => (
-                    <QuestionItem id={qid} />
-                  ))}
-                </Row>
+              <TabPane className="center" tabId="2">
+                {this.props.answeredQuestions.map((answer) => (
+                  <PollResultsList key={answer.id} id={answer.id} />
+                ))}
               </TabPane>
             </TabContent>
-            {/* {
-              Object.keys(users).map((id) => <QuestionItem key={id} user = {users[id].name}></QuestionItem>)
-            }   */}
           </div>
         </div>
       </div>
@@ -108,13 +71,6 @@ class HomePage extends React.Component {
 }
 
 function mapStateToProps({ users, authedUser, questions }) {
-  console.log("current authedUser ls: ", authedUser);
-  console.log("answers from home", users[Object.keys(users)[0]].answers);
-  console.log("questions from home: ", questions);
-
-  //   const answeredQuestions = Object.keys(user.answers).sort(
-  //     (a, b) => questions[b] - questions[a]
-  //   );
   const userAnswers = users[authedUser].answers;
   return {
     answeredQuestions: Object.values(questions)

@@ -1,6 +1,9 @@
+// export const RECEIVE_USERS = "RECEIVE_USERS";
+// export const ADD_USER_QUESTION = "ADD_USER_QUESTION";
+// export const USER_ANSWER_QUESTION = "USER_ANSWER_QUESTION";
 export const RECEIVE_USERS = "RECEIVE_USERS";
-export const ADD_USER_QUESTION = "ADD_USER_QUESTION";
-export const USER_ANSWER_QUESTION = "USER_ANSWER_QUESTION";
+export const ADD_QUESTION_ANSWER_U = "ADD_QUESTION_ANSWER_U";
+export const ADD_QUESTION_U = "ADD_QUESTION_U";
 
 export function receiveUsers(users) {
   return {
@@ -9,19 +12,18 @@ export function receiveUsers(users) {
   };
 }
 
-export function addUserQuestion(authedUser, qid) {
+export function addQuestionForUser(question) {
   return {
-    type: ADD_USER_QUESTION,
-    authedUser,
-    qid,
+    type: ADD_QUESTION_U,
+    question,
   };
 }
 
-export function saveUserAnswer(auth, qid, option) {
+export function saveAnswerForUser(authedUser, qid, answer) {
   return {
-    type: USER_ANSWER_QUESTION,
-    auth,
+    type: ADD_QUESTION_ANSWER_U,
+    authedUser,
     qid,
-    option,
+    answer,
   };
 }

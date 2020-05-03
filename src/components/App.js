@@ -1,17 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../App.css";
-import * as _DATA from "../utils/_DATA";
-import { Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LoadingBar from "react-redux-loading";
+import { connect } from "react-redux";
 import HomePage from "./HomePage";
+import PollDetails from "../components/PollDetails";
+import PollResults from "../components/PollResults";
 import LeaderBoard from "./LeaderBoard";
 import NewQuestion from "./NewQuestion";
 import LoginPage from "./LoginPage";
-import AnsweredQuestions from "./AnsweredQuestions";
-import QuestionDetailUnanswered from "./QuestionDetailUnanswered";
-import QuestionDetailAnswered from "./QuestionDetailAnswered";
 import ErrorPage from "./ErrorPage";
 import { handleInitialData } from "../actions/shared";
-import { connect } from "react-redux";
+import NavigationMenu from "./NavigationMenu";
 
 class App extends React.Component {
   componentDidMount() {
@@ -21,35 +21,48 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Route exact path="/login" render={() => <LoginPage />} />
-        <Route exact path="/" render={() => <HomePage />} />
-        <Route exact path="/leaderboard" render={() => <LeaderBoard />} />
-        <Route exact path="/newquestion" render={() => <NewQuestion />} />
-        <Route
-          exact
-          path="/answered-questions"
-          render={() => <AnsweredQuestions />}
-        />
-        <Route
-          exact
-          path="/questiondetailunanswered"
-          render={() => <QuestionDetailUnanswered />}
-        />
-        <Route
-          exact
-          path="/questiondetailanswered"
-          render={() => <QuestionDetailAnswered />}
-        />
-        <Route exact path="/error" render={() => <ErrorPage />} />
+        <Router>
+          <Fragment>
+            <LoadingBar style={{ backgroundColor: "white", height: "3px" }} />
+            <div>
+              <NavigationMenu authedUser={this.props.authedUser} />
+
+              {this.props.authed === true ? (
+                <Fragment>
+                  <Route path="/" component={LoginPage} />
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <Switch>
+                    <Route
+                      path="/"
+                      authedUser={this.props.authedUser}
+                      exact
+                      component={HomePage}
+                    />
+                    <Route
+                      path="/questions/:id"
+                      exact
+                      component={PollDetails}
+                    />
+                    <Route path="/results/:id" exact component={PollResults} />
+                    <Route path="/leaderboard" exact component={LeaderBoard} />
+                    <Route path="/add" exact component={NewQuestion} />
+                    <Route component={ErrorPage} />
+                  </Switch>
+                </Fragment>
+              )}
+            </div>
+          </Fragment>
+        </Router>
       </div>
     );
   }
 }
 
-function mapStateToProps({ users, questions, authedUser }) {
+function mapStateToProps({ authedUser }) {
   return {
-    users,
-    questions,
+    authed: authedUser === null,
     authedUser,
   };
 }
