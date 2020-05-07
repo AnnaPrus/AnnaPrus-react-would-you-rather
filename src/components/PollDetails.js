@@ -103,7 +103,7 @@ class PollDetails extends Component {
                   <Button className="btn-view-poll">
                     <Link
                       className="sign-in-button"
-                      to={`/results/${this.props.pollId}`}
+                      to={`/questions/${this.props.pollId}`}
                     >
                       <div onClick={this.handleVote} className="text-view-poll">
                         Submit
