@@ -8,12 +8,12 @@ class PollResultsList extends Component {
     const { user, question, totalVotes, yourAnswer } = this.props;
     return (
       <div id="custom">
-        <div class="card-header-home">
+        <div className="card-header-home">
           <Card>
             {console.log(this.props)}
 
             <Card.Header as="h5">
-              <h4>Results by {user.name} </h4>
+              <p>Results by {user.name} </p>
             </Card.Header>
             <div className=" container ">
               <div className="left padding">

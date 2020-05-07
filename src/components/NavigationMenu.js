@@ -13,28 +13,28 @@ class NavigationMenu extends React.Component {
   render() {
     const { user } = this.props;
     return (
-      <body id="custom">
-        <nav class="navbar navbar-expand-lg   ">
-          <div class="collapse navbar-collapse ml-5" id="navbar">
-            <ul class="navbar-nav mr-auto">
-              <Link to="/" exact>
-                <li class="nav-item active">
-                  <a class="nav-link">Home</a>
+      <div id="custom">
+        <nav className="navbar navbar-expand-lg   ">
+          <div className="collapse navbar-collapse ml-5" id="navbar">
+            <ul className="navbar-nav mr-auto">
+              <Link to="/" exact="true">
+                <li className="nav-item active">
+                  <span className="nav-link">Home</span>
                 </li>
               </Link>
               <Link to="/add">
-                <li class="nav-item">
-                  <a class="nav-link">New Question</a>
+                <li className="nav-item">
+                  <span className="nav-link">New Question</span>
                 </li>
               </Link>
               <Link to="/leaderboard">
-                <li class="nav-item ">
-                  <a class="nav-link">Leader Board</a>
+                <li className="nav-item ">
+                  <span className="nav-link">Leader Board</span>
                 </li>
               </Link>
             </ul>
-            <form class="form-inline mr-5 my-lg-0">
-              <text class="mr-sm-5" aria-label="Search">
+            <form className="form-inline mr-5 my-lg-0">
+              <span className="mr-sm-5" aria-label="Search">
                 {typeof user === "undefined" ? (
                   <div>
                     <Link to="/" className="prompt-button">
@@ -55,12 +55,12 @@ class NavigationMenu extends React.Component {
                     </button>
                   </div>
                 )}
-              </text>
+              </span>
             </form>
           </div>
         </nav>
-        <div class="hr"></div>
-      </body>
+        <div className="hr"></div>
+      </div>
     );
   }
 }

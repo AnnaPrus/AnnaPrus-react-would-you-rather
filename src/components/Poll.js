@@ -7,31 +7,31 @@ class Poll extends Component {
   render() {
     const { question, user, id } = this.props;
     return (
-      <div id="custom" class="container unanswered-page">
-        <div class="card-header-home">
+      <div id="custom" className="container unanswered-page">
+        <div className="card-header-home">
           <Card>
             <div className="card-poll">
               <div className="">
                 <Card.Header as="h5">
-                  <h4>{user.name} asks:</h4>
+                  <p>{user.name} asks:</p>
                 </Card.Header>
               </div>
 
-              <div class="container-cards padding">
+              <div className="container-cards padding">
                 <img
                   className="poll-card-avatar"
                   alt={user.avatarURL}
                   src={user.avatarURL}
                 />
               </div>
-              <div class="text-first-line">
+              <div className="text-first-line">
                 <p>Would you rather</p>
 
-                <h3 class="text-second-line">{question.optionOne.text}</h3>
+                <h3 className="text-second-line">{question.optionOne.text}</h3>
               </div>
               <Button className="btn-view-poll">
                 <Link className="sign-in-button" to={`/questions/${id}`}>
-                  <div class="text-view-poll">View poll</div>
+                  <div className="text-view-poll">View poll</div>
                 </Link>
               </Button>
             </div>

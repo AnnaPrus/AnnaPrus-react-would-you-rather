@@ -7,17 +7,17 @@ class LeaderBoard extends React.Component {
   render() {
     const { leaders } = this.props;
     return (
-      <body id="custom">
-        <div class="container leaderboard-page">
+      <div id="custom">
+        <div className="container leaderboard-page">
           <h3>Leaderboard</h3>
           <Card className="card-body">
             {console.log(this.props)}
             {leaders.map((user, index) => (
-              <div className="leaderboard-page">
+              <div className="leaderboard-page" key={index}>
                 <Card>
                   <div key={user.leaderId} className=" ">
                     <Card.Header>
-                      <h4>{user.leaderName} asks:</h4>
+                      <h4>{user.leaderName}</h4>
                     </Card.Header>
                     <Card.Body>
                       <div className="container-cards">
@@ -28,7 +28,7 @@ class LeaderBoard extends React.Component {
                             src={user.avatarURL}
                           />
                         </div>
-                        <div class="separator-vert"></div>
+                        <div className="separator-vert"></div>
                         <div className="container-info">
                           <h5>Score: {user.score}</h5>
                           <p>Answered Questions: {user.answered}</p>
@@ -45,7 +45,7 @@ class LeaderBoard extends React.Component {
             ))}
           </Card>
         </div>
-      </body>
+      </div>
     );
   }
 }

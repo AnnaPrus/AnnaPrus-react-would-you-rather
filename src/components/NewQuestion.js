@@ -32,33 +32,31 @@ class NewQuestion extends React.Component {
   };
   render() {
     return (
-      <body id="custom">
-        <div class="container newquestion-page">
+      <div id="custom">
+        <div className="container newquestion-page">
           <Card className="card-question">
             <Card.Header className="card-header">
               Create New Question
             </Card.Header>
-            <div class="card-body">
-              <h5 class="text-complete">Complete the question:</h5>
-              <p class="text-question"> Would you rather ...</p>
+            <div className="card-body">
+              <h5 className="text-complete">Complete the question:</h5>
+              <p className="text-question"> Would you rather ...</p>
               <Form.Group>
                 <Form.Group>
                   <Form.Control
-                    className="input"
+                    className="input input-options"
                     placeholder="Enter Option One Text Here"
                     value={this.state.optionOne}
                     type="text"
-                    className="input-options"
                     onChange={this.handleOptionOne}
                   />
                   <div className="text-or padding">OR</div>
 
                   <Form.Control
-                    className="input"
+                    className="input input-options"
                     placeholder="Enter Option Two Text Here"
                     value={this.state.optionTwo}
                     type="text"
-                    className="input-options"
                     onChange={this.handleOptionTwo}
                   />
                 </Form.Group>
@@ -69,7 +67,7 @@ class NewQuestion extends React.Component {
             </div>
           </Card>
         </div>
-      </body>
+      </div>
     );
   }
 }

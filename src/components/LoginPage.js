@@ -25,23 +25,23 @@ class LoginPage extends React.Component {
   render() {
     const { options } = this.props;
     return (
-      <body id="custom">
+      <div id="custom">
         {console.log(this.state)}
-        <div class="container login-page">
+        <div className="container login-page">
           <Card>
             <Card.Header className="card-header" as="h5">
-              <p class="card-title">Welcome to the Would You Rather App!</p>
-              <p class="card-text">Please sign in to continue</p>
+              <p className="card-title">Welcome to the Would You Rather App!</p>
+              <p className="card-text">Please sign in to continue</p>
             </Card.Header>
             <Card.Body>
-              <h4 class="card-title text-signin">Sign In</h4>
-              <div class="form-group">
-                <label for="canbedeleted"> </label>
+              <h4 className="card-title text-signin">Sign In</h4>
+              <div className="form-group">
+                <label htmlFor="canbedeleted"> </label>
 
                 <select
                   value={this.state.selectedOption}
                   onChange={this.handleOnChange}
-                  class="form-control"
+                  className="form-control"
                 >
                   {options.map((option) => (
                     <option
@@ -61,7 +61,7 @@ class LoginPage extends React.Component {
             </Card.Body>
           </Card>
         </div>
-      </body>
+      </div>
     );
   }
 }

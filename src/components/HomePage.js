@@ -23,7 +23,7 @@ class HomePage extends React.Component {
     return (
       <div id="custom">
         <div className="container">
-          <div class="card card-home-big">
+          <div className="card card-home-big">
             <Nav tabs>
               <NavItem>
                 <NavLink
@@ -58,9 +58,11 @@ class HomePage extends React.Component {
                 />
               </TabPane>
               <TabPane className="center" tabId="2">
-                {this.props.answeredQuestions.map((answer) => (
-                  <PollResultsList key={answer.id} id={answer.id} />
-                ))}
+                <PollList
+                  key="answeredQuestions"
+                  questions={this.props.answeredQuestions}
+                />
+                )
               </TabPane>
             </TabContent>
           </div>

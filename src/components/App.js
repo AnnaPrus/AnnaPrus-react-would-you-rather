@@ -45,7 +45,7 @@ class App extends React.Component {
                       exact
                       component={PollDetails}
                     />
-                    <Route path="/results/:id" exact component={PollResults} />
+                    {/* <Route path="/results/:id" exact component={PollResults} /> */}
                     <Route path="/leaderboard" exact component={LeaderBoard} />
                     <Route path="/add" exact component={NewQuestion} />
                     <Route component={ErrorPage} />

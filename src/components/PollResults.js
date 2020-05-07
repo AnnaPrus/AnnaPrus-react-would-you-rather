@@ -9,7 +9,7 @@ class PollResults extends Component {
     const { user, question, totalVotes, yourAnswer, isInvalid } = this.props;
     return (
       <div id="custom">
-        <div class="card-header-home container">
+        <div className="card-header-home container">
           <Card className="card-question">
             <div className="">
               {isInvalid === false ? (

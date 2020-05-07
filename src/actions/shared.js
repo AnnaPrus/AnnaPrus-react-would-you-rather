@@ -8,7 +8,7 @@ import {
 } from "../actions/questions";
 import { saveAnswerForUser, addQuestionForUser } from "../actions/users";
 import { saveQuestionAnswer, saveQuestion } from "../utils/api";
-import { showLoading, hideLoading } from "react-redux-loading";
+import { hideLoading } from "react-redux-loading";
 
 const AUTHED_ID = null;
 

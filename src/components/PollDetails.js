@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { handleSaveAnswer } from "../actions/shared";
 import ErrorPage from "../components/ErrorPage";
 import { Button, Card } from "react-bootstrap";
+import PollResults from "./PollResults";
 
 class PollDetails extends Component {
   state = {
     option: "",
+    hasVoted: false,
   };
 
   handleChange = (event) => {
@@ -17,7 +19,7 @@ class PollDetails extends Component {
   };
 
   handleVote = (event) => {
-    const { dispatch, authedUser, pollId } = this.props;
+    const { dispatch, authedUser, pollId, userAnswer } = this.props;
     const answer = this.state.option;
     const qid = pollId;
     dispatch(handleSaveAnswer({ authedUser, qid, answer }));
@@ -37,69 +39,87 @@ class PollDetails extends Component {
   }
 
   render() {
-    const { user, question, isInvalid } = this.props;
+    const {
+      user,
+      question,
+      isInvalid,
+      pollId,
+      authedUser,
+      userAnswer,
+    } = this.props;
+    console.log("poll from teh main page", question.optionOne.votes);
+    //  console.log("poll from teh main page", questions[pollId].OptionOne.votes);
+
+    const hasAnsweredOne = question.optionOne.votes.indexOf(authedUser) > -1;
+    const hasAnsweredTwo = question.optionTwo.votes.indexOf(authedUser) > -1;
+    const hasVoted = hasAnsweredOne || hasAnsweredTwo;
+
     return (
-      <div id="custom" class="container ">
-        <div className=" card-question-center">
-          <Card className="card-question ">
-            {isInvalid === false ? (
-              <div className="poll-card">
-                <Card.Header as="h5">
-                  <h4>{user.name} asks:</h4>
-                </Card.Header>
-                <div class="card-body container-cards">
-                  <div className="">
-                    <img
-                      className="poll-card-avatar"
-                      alt={user.avatarURL}
-                      src={user.avatarURL}
-                    />
-                  </div>
-                  <div class="separator-vert"></div>
-                  <div className="right">
-                    <b>Would You Rather...</b>
-                    <br />
-                    <br />
-                    <form>
-                      <input
-                        type="radio"
-                        checked={this.state.option === "optionOne"}
-                        name="options"
-                        value="optionOne"
-                        onChange={this.handleChange}
-                      />{" "}
-                      {question.optionOne.text}
-                      <br />
-                      <input
-                        type="radio"
-                        checked={this.state.option === "optionTwo"}
-                        name="options"
-                        value="optionTwo"
-                        onChange={this.handleChange}
-                      />{" "}
-                      {question.optionTwo.text}
-                      <br />
-                      <br />
-                    </form>
-                  </div>
-                </div>
-                <Button className="btn-view-poll">
-                  <Link
-                    className="sign-in-button"
-                    to={`/results/${this.props.pollId}`}
-                  >
-                    <div onClick={this.handleVote} class="text-view-poll">
-                      Submit
+      <div id="custom" className="container ">
+        {hasVoted === false ? (
+          <div className=" card-question-center">
+            <Card className="card-question ">
+              {isInvalid === false ? (
+                <div className="poll-card">
+                  <Card.Header as="h5">
+                    <p>{user.name} asks:</p>
+                  </Card.Header>
+                  <div className="card-body container-cards">
+                    <div className="">
+                      <img
+                        className="poll-card-avatar"
+                        alt={user.avatarURL}
+                        src={user.avatarURL}
+                      />
                     </div>
-                  </Link>
-                </Button>
-              </div>
-            ) : (
-              <ErrorPage />
-            )}
-            <br />
-          </Card>
-        </div>
+                    <div className="separator-vert"></div>
+                    <div className="right">
+                      <b>Would You Rather...</b>
+                      <br />
+                      <br />
+                      <form>
+                        <input
+                          type="radio"
+                          checked={this.state.option === "optionOne"}
+                          name="options"
+                          value="optionOne"
+                          onChange={this.handleChange}
+                        />{" "}
+                        {question.optionOne.text}
+                        <br />
+                        <input
+                          type="radio"
+                          checked={this.state.option === "optionTwo"}
+                          name="options"
+                          value="optionTwo"
+                          onChange={this.handleChange}
+                        />{" "}
+                        {question.optionTwo.text}
+                        <br />
+                        <br />
+                      </form>
+                    </div>
+                  </div>
+                  <Button className="btn-view-poll">
+                    <Link
+                      className="sign-in-button"
+                      to={`/results/${this.props.pollId}`}
+                    >
+                      <div onClick={this.handleVote} className="text-view-poll">
+                        Submit
+                      </div>
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <ErrorPage />
+              )}
+              <br />
+            </Card>
+          </div>
+        ) : (
+          <PollResults key={userAnswer.id} id={userAnswer.id} />
+        )}
       </div>
     );
   }
