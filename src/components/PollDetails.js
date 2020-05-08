@@ -19,7 +19,7 @@ class PollDetails extends Component {
   };
 
   handleVote = (event) => {
-    const { dispatch, authedUser, pollId, userAnswer } = this.props;
+    const { dispatch, authedUser, pollId } = this.props;
     const answer = this.state.option;
     const qid = pollId;
     dispatch(handleSaveAnswer({ authedUser, qid, answer }));
@@ -39,17 +39,7 @@ class PollDetails extends Component {
   }
 
   render() {
-    const {
-      user,
-      question,
-      isInvalid,
-      pollId,
-      authedUser,
-      userAnswer,
-    } = this.props;
-    console.log("poll from teh main page", question.optionOne.votes);
-    //  console.log("poll from teh main page", questions[pollId].OptionOne.votes);
-
+    const { user, question, isInvalid, authedUser, userAnswer } = this.props;
     const hasAnsweredOne = question.optionOne.votes.indexOf(authedUser) > -1;
     const hasAnsweredTwo = question.optionTwo.votes.indexOf(authedUser) > -1;
     const hasVoted = hasAnsweredOne || hasAnsweredTwo;
@@ -118,7 +108,7 @@ class PollDetails extends Component {
             </Card>
           </div>
         ) : (
-          <PollResults key={userAnswer.id} id={userAnswer.id} />
+          <PollResults key={userAnswer.id} id={this.props.pollId} />
         )}
       </div>
     );

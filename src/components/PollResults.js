@@ -15,7 +15,7 @@ class PollResults extends Component {
               {isInvalid === false ? (
                 <div className="poll-card">
                   <Card.Header as="h5">
-                    <h4>Results by {user.name} </h4>
+                    <p>Results by {user.name} </p>
                   </Card.Header>
                   <div className=" padding ">
                     <div className="left padding">
@@ -82,7 +82,7 @@ class PollResults extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, props) {
-  const { id } = props.match.params;
+  const id = props.id;
   const question = questions[id];
 
   if (typeof question === "undefined") {

@@ -62,7 +62,6 @@ class HomePage extends React.Component {
                   key="answeredQuestions"
                   questions={this.props.answeredQuestions}
                 />
-                )
               </TabPane>
             </TabContent>
           </div>

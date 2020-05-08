@@ -5,7 +5,6 @@ import LoadingBar from "react-redux-loading";
 import { connect } from "react-redux";
 import HomePage from "./HomePage";
 import PollDetails from "../components/PollDetails";
-import PollResults from "../components/PollResults";
 import LeaderBoard from "./LeaderBoard";
 import NewQuestion from "./NewQuestion";
 import LoginPage from "./LoginPage";
@@ -45,7 +44,6 @@ class App extends React.Component {
                       exact
                       component={PollDetails}
                     />
-                    {/* <Route path="/results/:id" exact component={PollResults} /> */}
                     <Route path="/leaderboard" exact component={LeaderBoard} />
                     <Route path="/add" exact component={NewQuestion} />
                     <Route component={ErrorPage} />
