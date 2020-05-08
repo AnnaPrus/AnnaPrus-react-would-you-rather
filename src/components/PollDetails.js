@@ -9,7 +9,6 @@ import PollResults from "./PollResults";
 class PollDetails extends Component {
   state = {
     option: "",
-    hasVoted: false,
   };
 
   handleChange = (event) => {
@@ -39,10 +38,18 @@ class PollDetails extends Component {
   }
 
   render() {
-    const { user, question, isInvalid, authedUser, userAnswer } = this.props;
-    const hasAnsweredOne = question.optionOne.votes.indexOf(authedUser) > -1;
-    const hasAnsweredTwo = question.optionTwo.votes.indexOf(authedUser) > -1;
-    const hasVoted = hasAnsweredOne || hasAnsweredTwo;
+    const { user, question, authedUser, userAnswer } = this.props;
+    let { isInvalid } = this.props;
+    let hasAnsweredOne, hasAnsweredTwo;
+    let hasVoted = false;
+
+    if (isInvalid) {
+      return <ErrorPage />;
+    } else {
+      hasAnsweredOne = question.optionOne.votes.indexOf(authedUser) > -1;
+      hasAnsweredTwo = question.optionTwo.votes.indexOf(authedUser) > -1;
+      hasVoted = hasAnsweredOne || hasAnsweredTwo;
+    }
 
     return (
       <div id="custom" className="container ">
